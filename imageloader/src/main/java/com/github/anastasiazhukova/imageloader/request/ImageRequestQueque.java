@@ -7,7 +7,7 @@ import com.github.anastasiazhukova.imageloader.utils.LogUtils;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
-final class ImageRequestQueque implements IRequestQueque<ImageRequest> {
+public final class ImageRequestQueque implements IRequestQueque<ImageRequest> {
 
     private static final String LOG_TAG = ImageRequestQueque.class.getSimpleName();
 
@@ -17,11 +17,10 @@ final class ImageRequestQueque implements IRequestQueque<ImageRequest> {
     private ImageRequestQueque() {
 
         LogUtils.logD(LOG_TAG, "Created");
-
         mQueque = new LinkedBlockingDeque<>();
     }
 
-    static ImageRequestQueque getInstance() {
+    public static ImageRequestQueque getInstance() {
         if (mInstance == null) {
             synchronized (ImageRequestQueque.class) {
                 mInstance = new ImageRequestQueque();
@@ -33,17 +32,12 @@ final class ImageRequestQueque implements IRequestQueque<ImageRequest> {
 
     @Override
     public ImageRequest takeFirst() throws InterruptedException {
-
-        LogUtils.logD(LOG_TAG, "Try to take first");
-
         return mQueque.takeFirst();
     }
 
     @Override
     public void addFirst(@NonNull final ImageRequest pImageRequest) {
-
         LogUtils.logD(LOG_TAG, "Added: " + pImageRequest.getUrl());
-
         mQueque.addFirst(pImageRequest);
     }
 

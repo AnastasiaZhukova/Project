@@ -8,7 +8,7 @@ import com.github.anastasiazhukova.imageloader.ImageLoader;
 
 public class ImageLoaderSampleActivity extends AppCompatActivity {
 
-    private String mUrl = "http://lorempixel.com/1800/1800/sports/1/";
+    private final String mUrl = "http://lorempixel.com/1800/1800/sports/1/";
     private ImageView mView;
 
     @Override
@@ -20,4 +20,14 @@ public class ImageLoaderSampleActivity extends AppCompatActivity {
         ImageLoader.getInstance().load(mUrl).into(mView).start();
     }
 
+    @Override
+    protected void onResume() {
+        ImageLoader.getInstance()
+                .load(mUrl)
+                .into(mView)
+                .placeholder(R.drawable.ic_process)
+                .errorholder(R.drawable.ic_error)
+                .start();
+        super.onResume();
+    }
 }

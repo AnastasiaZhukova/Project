@@ -2,8 +2,6 @@ package com.github.anastasiazhukova.imageloader;
 
 import android.support.annotation.NonNull;
 
-import com.github.anastasiazhukova.imageloader.loadlistener.ILoadListenerFactory;
-import com.github.anastasiazhukova.imageloader.loadlistener.LoadListenerFactory;
 import com.github.anastasiazhukova.imageloader.request.IRequestHandler;
 import com.github.anastasiazhukova.imageloader.request.ImageRequest;
 import com.github.anastasiazhukova.imageloader.request.ImageRequestBuilder;
@@ -14,7 +12,6 @@ public final class ImageLoader implements IImageLoader {
 
     private static final String LOG_TAG = ImageLoader.class.getSimpleName();
     private static volatile ImageLoader mInstance;
-
     private final IRequestHandler<ImageRequest> mRequestHandler;
 
     private ImageLoader() {
@@ -36,19 +33,11 @@ public final class ImageLoader implements IImageLoader {
     @Override
     public ImageRequestBuilder load(@NonNull final String pUrl) {
 
-        return load(pUrl, null);
-    }
-
-    @Override
-    public ImageRequestBuilder load(@NonNull final String pUrl, final IImageLoaderListener pListener) {
-
-        final ILoadListenerFactory loadListenerFactory = new LoadListenerFactory();
-
         final ImageRequestBuilder.IListener listener = new ImageRequestBuilder.IListener() {
 
             @Override
             public void onRequestReady(final ImageRequest pImageRequest) {
-                mRequestHandler.makeRequest(pImageRequest, loadListenerFactory.createImageLoadListener(pListener));
+                handleRequestReadyEvent(pImageRequest);
             }
         };
 
@@ -56,8 +45,8 @@ public final class ImageLoader implements IImageLoader {
         return imageRequestBuilder.load(pUrl);
     }
 
-    public interface IListener extends IImageLoaderListener {
-
+    private void handleRequestReadyEvent(final ImageRequest pImageRequest) {
+        mRequestHandler.makeRequest(pImageRequest);
     }
 }
 

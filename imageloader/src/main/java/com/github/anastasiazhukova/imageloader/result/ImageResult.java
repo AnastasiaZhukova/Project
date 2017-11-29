@@ -14,8 +14,7 @@ public class ImageResult implements IResult<Bitmap> {
     private Bitmap mBitmap;
     private Throwable mThrowable;
 
-    public ImageResult() {
-    }
+    public ImageResult() {}
 
     public ImageResult(@NonNull final ImageRequest pRequest) {
         mRequest = pRequest;

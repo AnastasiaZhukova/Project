@@ -2,7 +2,7 @@ package com.github.anastasiazhukova.imageloader.request;
 
 import android.widget.ImageView;
 
-import com.github.anastasiazhukova.imageloader.loadlistener.ILoadListener;
+import com.github.anastasiazhukova.imageloader.IImageLoaderListener;
 
 import java.lang.ref.WeakReference;
 
@@ -17,7 +17,7 @@ public class ImageRequest implements IRequest {
     private final Integer mErrorHolderResourceId;
     private final Integer mPlaceHolderResourceId;
 
-    private ILoadListener mListener;
+    private IImageLoaderListener mListener;
 
     ImageRequest(final ImageRequestBuilder pBuilder) {
 
@@ -25,6 +25,13 @@ public class ImageRequest implements IRequest {
         mUrl = pBuilder.mUrl;
         mPlaceHolderResourceId = pBuilder.mPlaceHolderResourceId;
         mErrorHolderResourceId = pBuilder.mErrorResourceId;
+        mListener = pBuilder.mImageLoaderListener;
+
+    }
+
+    public void setSize(final int pWidth, final int pHeight) {
+        mWidth = pWidth;
+        mHeight = pHeight;
 
     }
 
@@ -40,17 +47,11 @@ public class ImageRequest implements IRequest {
         return mHeight;
     }
 
-    public void setSize(final int pWidth, final int pHeight) {
-        mWidth = pWidth;
-        mHeight = pHeight;
-
-    }
-
-    String getUrl() {
+    public String getUrl() {
         return mUrl;
     }
 
-    String getKey() {
+    public String getKey() {
         return getUrl();
     }
 
@@ -62,11 +63,11 @@ public class ImageRequest implements IRequest {
         return mErrorHolderResourceId == null ? 0 : mErrorHolderResourceId;
     }
 
-    ILoadListener getListener() {
+    public IImageLoaderListener getListener() {
         return mListener;
     }
 
-    void setListener(final ILoadListener pListener) {
+    protected void setListener(final IImageLoaderListener pListener) {
         mListener = pListener;
     }
 

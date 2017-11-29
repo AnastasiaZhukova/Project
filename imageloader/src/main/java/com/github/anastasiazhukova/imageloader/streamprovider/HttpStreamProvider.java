@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class HttpStreamProvider implements IStreamProvider<String> {
+class HttpStreamProvider implements IStreamProvider<String> {
 
     private static final String LOG_TAG = HttpStreamProvider.class.getSimpleName();
 

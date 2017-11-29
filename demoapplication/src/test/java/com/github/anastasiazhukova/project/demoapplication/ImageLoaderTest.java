@@ -2,6 +2,7 @@ package com.github.anastasiazhukova.project.demoapplication;
 
 import android.widget.ImageView;
 
+import com.github.anastasiazhukova.imageloader.IImageLoaderListener;
 import com.github.anastasiazhukova.imageloader.ImageLoader;
 
 import org.junit.Before;
@@ -44,8 +45,9 @@ public class ImageLoaderTest {
     public void load() throws Exception {
         mView = mActivity.findViewById(R.id.sample_image_view);
         ImageLoader.getInstance()
-                .load(mUrl, new
-                ImageLoader.IListener() {
+                .load(mUrl)
+                .into(mView)
+                .listener(new IImageLoaderListener() {
 
                     @Override
                     public void onLoadStarted() {
@@ -57,7 +59,6 @@ public class ImageLoaderTest {
                         assertEquals(mUrl, mView.getTag());
                     }
                 })
-                .into(mView)
                 .start();
     }
 

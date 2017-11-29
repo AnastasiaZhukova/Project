@@ -3,6 +3,7 @@ package com.github.anastasiazhukova.imageloader.request;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
+import com.github.anastasiazhukova.imageloader.IImageLoaderListener;
 import com.github.anastasiazhukova.imageloader.utils.LogUtils;
 
 import java.lang.ref.WeakReference;
@@ -16,6 +17,7 @@ public final class ImageRequestBuilder {
     WeakReference<ImageView> mTarget;
     Integer mPlaceHolderResourceId;
     Integer mErrorResourceId;
+    IImageLoaderListener mImageLoaderListener;
 
     public ImageRequestBuilder(final IListener pListener) {
         mListener = pListener;
@@ -38,6 +40,11 @@ public final class ImageRequestBuilder {
 
     public ImageRequestBuilder errorholder(final int pResourceId) {
         mErrorResourceId = pResourceId;
+        return this;
+    }
+
+    public ImageRequestBuilder listener(final IImageLoaderListener pListener) {
+        mImageLoaderListener = pListener;
         return this;
     }
 

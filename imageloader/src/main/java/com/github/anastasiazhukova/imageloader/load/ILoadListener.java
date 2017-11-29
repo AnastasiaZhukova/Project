@@ -1,4 +1,4 @@
-package com.github.anastasiazhukova.imageloader.loadlistener;
+package com.github.anastasiazhukova.imageloader.load;
 
 import android.support.annotation.NonNull;
 
