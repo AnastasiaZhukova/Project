@@ -17,38 +17,10 @@ public class ImageLoadHandler implements ILoadHandler {
         mListenerFactory = new LoadListenerFactory();
     }
 
-    private static final String LOG_TAG = ImageLoadHandler.class.getSimpleName();
-
     @Override
     public void load() {
-
-        final CachedLoadAsyncTask imageRequestLoaderAsyncTask = new CachedLoadAsyncTask(mListenerFactory.createLoadListener());
-
-        imageRequestLoaderAsyncTask.executeOnExecutor(mExecutor);
-
+        final CachedLoadAsyncTask cachedLoadAsyncTask = new CachedLoadAsyncTask(mListenerFactory.createLoadListener());
+        cachedLoadAsyncTask.executeOnExecutor(mExecutor);
     }
-
-/*    private void processLoadStarted(final ImageRequest pImageRequest) {
-
-        LogUtils.logD(LOG_TAG + " onLoadStarted", "Called");
-
-        final IImageLoaderListener listener = pImageRequest.getListener();
-        if (listener != null) {
-            listener.onLoadStarted();
-        }
-
-    }
-
-    private void processLoadFinished(@NonNull final ImageResult pImageResult) {
-        LogUtils.logD(LOG_TAG + " onLoadFinished", "Called");
-
-        final ImageRequest request = pImageResult.getRequest();
-        if (request != null) {
-            final IImageLoaderListener listener = request.getListener();
-            if (listener != null) {
-                listener.onLoadFinished();
-            }
-        }
-    }*/
 
 }

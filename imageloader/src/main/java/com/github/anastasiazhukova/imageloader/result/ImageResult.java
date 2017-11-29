@@ -35,7 +35,6 @@ public class ImageResult implements IResult<Bitmap> {
     }
 
     public void setResult(final Bitmap pBitmap) {
-
         LogUtils.logD(LOG_TAG, "Bitmap set");
         mBitmap = pBitmap;
     }

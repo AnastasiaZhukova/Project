@@ -16,8 +16,8 @@ class HttpStreamProvider implements IStreamProvider<String> {
         final URL url = new URL(path);
 
         LogUtils.logD(LOG_TAG, "Url: " + url);
-
         final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
         return connection.getInputStream();
     }
 

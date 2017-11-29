@@ -71,7 +71,6 @@ public class ImageRequestHandler implements IRequestHandler<ImageRequest> {
                         pImageRequest.setSize(view.getWidth(), view.getHeight());
                         enqueue(pImageRequest);
                     }
-
                     return true;
                 }
             });

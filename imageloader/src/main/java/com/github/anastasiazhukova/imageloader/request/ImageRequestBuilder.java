@@ -49,9 +49,7 @@ public final class ImageRequestBuilder {
     }
 
     public void start() {
-
         LogUtils.logD(LOG_TAG, "Load start called");
-
         mListener.onRequestReady(this.build());
     }
 
@@ -67,7 +65,6 @@ public final class ImageRequestBuilder {
     }
 
     public interface IListener {
-
         void onRequestReady(ImageRequest pImageRequest);
     }
 

@@ -17,7 +17,7 @@ public class ImageRequest implements IRequest {
     private final Integer mErrorHolderResourceId;
     private final Integer mPlaceHolderResourceId;
 
-    private IImageLoaderListener mListener;
+    private final IImageLoaderListener mListener;
 
     ImageRequest(final ImageRequestBuilder pBuilder) {
 
@@ -65,10 +65,6 @@ public class ImageRequest implements IRequest {
 
     public IImageLoaderListener getListener() {
         return mListener;
-    }
-
-    protected void setListener(final IImageLoaderListener pListener) {
-        mListener = pListener;
     }
 
 }

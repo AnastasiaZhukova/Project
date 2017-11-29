@@ -8,7 +8,6 @@ public final class CacheUtils {
     public static int getCacheSize() {
 
         final int cacheSize = Math.min((int) (Runtime.getRuntime().maxMemory() / 4), MAX_MEMORY_FOR_IMAGES);
-
         LogUtils.logI(LOG_TAG, "Cache size: " + cacheSize);
 
         return cacheSize;
